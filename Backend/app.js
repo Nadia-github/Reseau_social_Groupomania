@@ -15,8 +15,6 @@ const app = express();
 //const mongoose = require('mongoose');
 
 
-const user = require('./models/user');
-
 require ("dotenv").config();
 
 app.use((req, res, next) => {

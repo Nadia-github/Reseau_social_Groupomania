@@ -9,19 +9,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       dateCreation: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       titre: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       contenu: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       attachment: {
+        allowNull: true,
         type: Sequelize.STRING
       },
       auteur: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "users",
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: false,

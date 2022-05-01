@@ -1,6 +1,8 @@
-const User = require("../models/user");
+const models = require('../models');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+//const { or } = require('sequelize/types');
+const { Sequelize, Model, DataTypes } = require('sequelize');
 
 require ("dotenv").config();
 
@@ -8,16 +10,20 @@ exports.createUser = (req, res) => {
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
-      const user = new User({
+      const user = new models.users({
+        nom: req.body.nom,
+        prenom: req.body.prenom,
+        sexe: req.body.sexe, //besoin de confirmation
         email: req.body.email,
         password: hash,
+        isAdmin: req.body.admin, //besoin de confirmation
       });
       user
         .save()
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
         .catch((error) => res.status(400).json({ error }));
     })
-    .catch((error) => res.status(500).json({ error }));
+    //.catch((error) => res.status(500).json({ error }));
 };
 
 exports.login = (req, res, next) => {

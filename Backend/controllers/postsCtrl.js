@@ -7,7 +7,7 @@ exports.createPost = (req, res) => {
   console.log(postbject);
   delete req.body._id;
   const post = new Post({
-    ...sauceObject,
+    ...postObject,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`,
@@ -38,7 +38,7 @@ exports.findSauce = (req, res) => {
 exports.modifySauce = (req, res) => {
   const sauceObject = req.file
     ? {
-        ...JSON.parse(req.body.sauce),
+        ...JSON.parse(req.body.posts),
         imageUrl: `${req.protocol}://${req.get("host")}/images/${
           req.file.filename
         }`,
@@ -46,7 +46,7 @@ exports.modifySauce = (req, res) => {
     : { ...req.body };
   Sauce.updateOne(
     { _id: req.params.id, userId : res.locals.userId },
-    { ...sauceObject, _id: req.params.id }
+    { ...postsObject, _id: req.params.id }
   )
     .then(() => res.status(200).json({ message: "Objet modifié !" }))
     .catch((error) => res.status(400).json({ error }));
