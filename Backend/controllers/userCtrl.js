@@ -10,10 +10,10 @@ exports.createUser = (req, res) => {
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
-      const user = new models.users({
+      const user = models.users.build({
         nom: req.body.nom,
         prenom: req.body.prenom,
-        sexe: req.body.sexe, //besoin de confirmation
+        sexe: req.body.sexe, 
         email: req.body.email,
         password: hash,
         isAdmin: req.body.admin, //besoin de confirmation
@@ -23,11 +23,11 @@ exports.createUser = (req, res) => {
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
         .catch((error) => res.status(400).json({ error }));
     })
-    //.catch((error) => res.status(500).json({ error }));
+    .catch((error) => res.status(500).json({ error }));
 };
 
 exports.login = (req, res, next) => {
-  User.findOne({ email: req.body.email })
+  Users.findOne({ email: req.body.email })
     .then((user) => {
       if (!user) {
         return res.status(401).json({ error: "Utilisateur non trouvé !" });
