@@ -1,16 +1,17 @@
-const Post = require("../models/posts");
+const models = require('../models');
 const fs = require("fs");
+const { Sequelize, Model, DataTypes } = require('sequelize');
 
-/* Enregistre dans la BDD la post que l'utilisateur a créer */
+/* Enregistre dans la BDD le post que l'utilisateur a crée */
 exports.createPost = (req, res) => {
-  const postObject = JSON.parse(req.body.post);
-  console.log(postbject);
-  delete req.body._id;
-  const post = new Post({
-    ...postObject,
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
+  const attachment = req.file ? `${req.protocol}://${req.get("host")}/images/${
+    req.file.filename
+  }` : '';
+  const post = models.posts.build({
+    titre: req.body.titre,
+    contenu: req.body.contenu,
+    attachment: attachment,
+    userId: res.locals.userId,
   });
   post
     .save()
@@ -27,16 +28,16 @@ exports.findAllPost = (req, res) => {
 
 //==================================
 
-/* retourne  un objet sauce correspondant a l'id passé en paramètre */
-exports.findSauce = (req, res) => {
-  Sauce.findOne({ _id: req.params.id })
+/* retourne  un objet Post correspondant a l'id passé en paramètre */
+exports.findPost = (req, res) => {
+  Post.findOne({ _id: req.params.id })
     .then((thing) => res.status(200).json(thing))
     .catch((error) => res.status(404).json({ error }));
 };
 
-// met à jour la sauce et retourne un message d'erreur le cas échéant
-exports.modifySauce = (req, res) => {
-  const sauceObject = req.file
+// met à jour le post et retourne un message d'erreur le cas échéant
+exports.modifyPost = (req, res) => {
+  const postObject = req.file
     ? {
         ...JSON.parse(req.body.posts),
         imageUrl: `${req.protocol}://${req.get("host")}/images/${
@@ -44,7 +45,7 @@ exports.modifySauce = (req, res) => {
         }`,
       }
     : { ...req.body };
-  Sauce.updateOne(
+  Post.updateOne(
     { _id: req.params.id, userId : res.locals.userId },
     { ...postsObject, _id: req.params.id }
   )
@@ -52,30 +53,35 @@ exports.modifySauce = (req, res) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
-/* supprime la sauce dont l'id est en paramètre */
-exports.deleteSauce = (req, res, then) => {
-  //recherche la sauce dans la BDD
-  Sauce.findOne({ _id: req.params.id, userId : res.locals.userId })
-    .then((sauce) => {
+/* supprime le post dont l'id est en paramètre */
+exports.deletePost = (req, res, then) => {
+  //recherche le poste dans la BDD
+  Post.findOne({ _id: req.params.id, userId : res.locals.userId })
+    .then((post) => {
       //récupère le chemin physique de l'image
       const filename = sauce.imageUrl.split("/images/")[1];
       // supprime l'image des dossiers du serveur
       fs.unlink(`images/${filename}`, () => {
-        // supprime la sauce de la BDD et retourne un message le confirmant
-        Sauce.deleteOne({ _id: req.params.id, userId : res.locals.userId })
-          .then(() => res.status(200).json({ message: "Sauce supprimée !" }))
+        // supprime le post de la BDD et retourne un message le confirmant
+        Post.deleteOne({ _id: req.params.id, userId : res.locals.userId })
+          .then(() => res.status(200).json({ message: "Message supprimé !" }))
           .catch((error) => res.status(400).json({ error }));
       });
     })
-    // erreur si la sauce n'a pu être recherché
+    // erreur si le post n'a pu être recherché
     .catch((error) => res.status(500).json({ error }));
 };
 
-/* gère les likes et les dislikes */
-exports.likeSauce = (req, res, then) => {
+
+
+
+
+
+// gère les likes et les dislikes
+exports.likePost = (req, res, then) => {
   // recherche la sauce dans la BDD
   Sauce.findOne({ _id: req.params.id })
-    .then((sauce) => {
+    .then((post) => {
       // selon la valeur du like, un bloc de code différent sera exécuté
       if (
         req.body.like == -1 &&
