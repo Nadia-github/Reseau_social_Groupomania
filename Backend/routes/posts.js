@@ -9,17 +9,17 @@ const postsCtrl = require ("../controllers/postsCtrl");
 // On crée un router avec la méthode mise à disposition par Express
 const router = express.Router();
 
-/*router.post('/', auth, multer, postsCtrl.createPost);
+router.post('/', auth, postsCtrl.createPost);
 
-router.get('/', auth, postsCtrl.findAllSauces);
+router.get('/', auth, postsCtrl.findAllPost);
 
-router.get('/:id', auth, postsCtrl.findSauce);
+router.get('/:id', auth, postsCtrl.findPost);
 
-router.put('/:id', auth, multer, postsCtrl.modifySauce);
+router.put('/:id', auth, multer, postsCtrl.modifyPost);
 
-router.delete('/:id', auth, postsCtrl.deleteSauce);
+router.delete('/:id', auth, postsCtrl.deletePost);
 
-router.post('/:id/like', auth, postsCtrl.likeSauce);*/
+//router.post('/:id/like', auth, postsCtrl.likePost);
 
 
 module.exports = router;
