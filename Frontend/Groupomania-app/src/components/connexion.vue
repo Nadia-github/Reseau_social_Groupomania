@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <h2>Connectez-vous à la team Groupomania</h2>
+        <h2>Connecte-toi à la team Groupomania</h2>
         <v-form ref="form" v-model="valid" lazy-validation>
 
             <v-text-field
@@ -22,23 +22,23 @@
         
             <v-btn
             :disabled="!valid"
-            color="blue"
+            color="#ffcbcb"
             class="mr-4"
             @click="validate"
             >
             Valider
             </v-btn>
-
-        </v-form>
-        <p>Pas encore inscrit ?</p>
-        <v-btn
-            :disabled="valid"
-            color="grey"
-            class="mr-4"
-            @click="suscribe"
-            >
-            s'inscrire
+            <p>Pas encore inscrit ?</p>
+            <v-btn
+                :disabled="valid"
+                color="#91"
+                class="mr-5"
+                @click="suscribe"
+                >
+                s'inscrire
             </v-btn>
+        </v-form>
+        
     </v-app>
 </template>
 

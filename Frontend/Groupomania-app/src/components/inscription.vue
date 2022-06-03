@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <h2>Inscrivez-vous !</h2>
+        <h2>Inscris-toi ici !</h2>
         <v-form ref="form" v-model="valid" lazy-validation>
 
             <v-text-field
@@ -43,7 +43,7 @@
         
             <v-btn
             :disabled="!valid"
-            color="blue"
+            color="#ffcbcb"
             class="mr-4"
             @click="validate"
             >
