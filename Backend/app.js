@@ -12,8 +12,6 @@ const bodyParser = require ('body-parser');
 
 const app = express();
 
-//const mongoose = require('mongoose');
-
 
 require ("dotenv").config();
 

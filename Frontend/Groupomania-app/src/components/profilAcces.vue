@@ -4,7 +4,7 @@
 </template>
 
 <script>
-
+    
     const userId = window.localStorage.getItem("userId");
     const token = window.localStorage.getItem("userToken")
 
@@ -18,11 +18,12 @@
     }*/
 
     const userData = {
-        prenom,
-        nom,
-        sexe,
-        email
+        prenom : "prenom".valueOf,
+        nom : "nom".valueOf,
+        sexe: "sexe".valueOf,
+        email: "email".valueOf
     }
     
-    export default profil-acces;
+    export default profilAcces;
 </script>
+

@@ -1,4 +1,5 @@
 <template>
+    <router-link v-if="isConnected" to="/profil">Profil</router-link>
     <v-app>
         <h2>Connecte-toi à la team Groupomania</h2>
         <v-form ref="form" v-model="valid" lazy-validation>
@@ -24,9 +25,13 @@
             :disabled="!valid"
             color="#ffcbcb"
             class="mr-4"
-            @click="validate"
+            @click="connect"
             >
             Valider
+                <v-icon
+                end
+                icon="mdi-checkbox-marked-circle"
+                ></v-icon>
             </v-btn>
             <p>Pas encore inscrit ?</p>
             <v-btn
@@ -63,13 +68,28 @@ export default {
     }),
 
     methods: {
-        validate() {
-        console.log(this.email)
+        connect() {
+        fetch('http://localhost:5000/api/auth/login', {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify({ 
+                    email : this.email,
+                    password : this.password                             
+                }),
+            })
+            .then(response => response.json())
+            .then( user =>{
+                localStorage.setItem ("email", user.email)
+                localStorage.setItem ("password", user.password)
+
+                window.location.href= "confirmation.html"
+            })
         },
         suscribe() {
         console.log(this.password)
         }
     },
-    
     }
 </script>

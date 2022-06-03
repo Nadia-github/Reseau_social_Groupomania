@@ -29,6 +29,10 @@
             @click="accesProfil"
             >
             Valider
+                <v-icon
+                end
+                icon="mdi-checkbox-marked-circle"
+                ></v-icon>
             </v-btn>
             <p>Toujours pas inscrit ?</p>
             <v-btn
@@ -38,9 +42,13 @@
                 @click="accesProfil"
                 >
                 s'inscrire
+                <v-icon 
+                end
+                icon="fa:fas fa-edit">
+                </v-icon>
             </v-btn>
         </v-form>
-    </v-app>}
+    </v-app>
 </template>
 
 <script>

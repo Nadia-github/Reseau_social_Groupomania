@@ -2,12 +2,13 @@
     <nav>
       <router-link to="/">Connexion</router-link>
       <router-link to="/inscription">Inscription</router-link>
-      <router-link to="/profil">Profil</router-link>
+      <router-link v-if="isConnected" to="/profil">Profil</router-link>
     </nav>
     <header>
       <h1>
-        The Groupomania network
+        Le réseau
       </h1>
+      <img src="../public/icon-left-font-monochrome-white.png" alt="logo Groupomania" class="logo"> 
     </header>
     <main>
        <router-view/>
@@ -60,7 +61,7 @@ export default {
   name: "App",
   components: {},
     data: () => ({
-    //
+    isConnected : localStorage.getItem("userId")
   }),
 };
 </script>
@@ -77,6 +78,7 @@ export default {
 }
 
 header {
+  background-color: grey;
   line-height: 1.5;
   max-height: 100vh;
 }
@@ -151,6 +153,10 @@ nav a:first-of-type {
 
   .logo {
     margin: 0 2rem 0 0;
+  }
+
+  img {
+     width: 30%;
   }
 
   nav {
