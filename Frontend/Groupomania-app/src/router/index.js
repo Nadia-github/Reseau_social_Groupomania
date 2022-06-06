@@ -3,6 +3,7 @@ import connexion from "@/components/connexion.vue"
 import inscription from "@/components/inscription.vue"
 import profil from "@/components/profil.vue"
 
+
 const routes = [
     {
     path: '/',
@@ -18,7 +19,8 @@ const routes = [
     path: '/profil',
     name: 'profil',
     component: profil
-    }
+    },
+
 ]
 
 const router = createRouter({

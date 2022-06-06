@@ -6,9 +6,9 @@
     </nav>
     <header>
       <h1>
-        Le réseau
+        Ton réseau
       </h1>
-      <img src="../public/icon-left-font-monochrome-white.png" alt="logo Groupomania" class="logo"> 
+      <img src="../public/icon-left-font-monochrome-white V2.png" alt="logo Groupomania" class="logo"> 
     </header>
     <main>
        <router-view/>
@@ -17,7 +17,7 @@
     <v-app>
     <v-footer>
       <v-card
-        elevation="0"
+        elevation="10"
         rounded="0"
         width="100%"
         class="bg-grey text-center"
@@ -70,7 +70,7 @@ export default {
 @import "@/assets/base.css";
 
 #app {
-  max-width: 1280px;
+  width: 70%;
   margin: 0 auto;
   padding: 2rem;
 
@@ -78,14 +78,27 @@ export default {
 }
 
 header {
-  background-color: grey;
-  line-height: 1.5;
+  background-color: #616161;
+  background-size: 200px 500px;
   max-height: 100vh;
+  border-radius: 0;
+  color: #FFF;
+  padding: 5px 20px;
+  display: flex;
+  place-items: center;
+  justify-content:center;
+  margin: 30px 0;
 }
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin-left:  10px;
+}
+
+h1{
+  padding-bottom: 5px;
+  font-size: 1.6em;
+  font-weight: bold;
 }
 
 a,
@@ -95,19 +108,24 @@ a,
   transition: 0.4s;
 }
 
+nav{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.2em;
+}
+
+.v-footer{
+  padding: 0;
+}
 
 
 @media (hover: hover) {
   a:hover {
     background-color: hsla(328, 82%, 9%, 0.2);
   }
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
 }
 
 nav a.router-link-exact-active {
@@ -128,6 +146,17 @@ nav a:first-of-type {
   border: 0;
 }
 
+img {
+     width: 150px;
+     height: 65px;
+}
+
+@media (max-width: 800px) {
+  #app{
+    width: 90%;
+  }
+}
+
 @media (min-width: 1024px) {
   body {
     display: flex;
@@ -135,28 +164,7 @@ nav a:first-of-type {
   }
 
   #app {
-   
     padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  img {
-     width: 30%;
   }
 
   nav {
