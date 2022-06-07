@@ -1,6 +1,6 @@
 <template>
     <nav>
-      <router-link to="/">Connexion</router-link>
+      <router-link to="/">Accueil</router-link>
       <router-link to="/inscription">Inscription</router-link>
       <router-link v-if="isConnected" to="/profil">Profil</router-link>
       <router-link to="/about">A propos</router-link>

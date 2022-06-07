@@ -53,6 +53,7 @@ exports.login = (req, res, next) => {
                       nom: user.nom,
                       prenom: user.prenom,
                       userId: user.id,
+                      sexe: user.sexe,
                       token: jwt.sign(
                           {userId: user.id},
                           "RANDOM_TOKEN_SECRET",

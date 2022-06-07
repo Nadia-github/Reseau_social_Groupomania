@@ -4,6 +4,7 @@
     <v-app>
         <h2 id="titre-profil">Bienvenue à toi cher collègue {{ prenom }} </h2>
         <div class="divos d-flex justify-space-around">
+            <a href="/posts">
             <v-btn class="btn">
                 <v-btn
                     color="info"
@@ -11,14 +12,17 @@
                     size="x-small"
                 ></v-btn>
             Voir mon fil d'actualité</v-btn>
-            <v-btn class="btn"
-            @click= "articleCreation">
-                <v-btn
-                    color="secondary"
-                    icon="mdi-pencil"
-                    size="x-small"
-                ></v-btn>         
-            Créer une publication</v-btn>    
+            </a>
+            <a href="/createpost">
+                <v-btn class="btn"
+                @click= "articleCreation">
+                    <v-btn
+                        color="secondary"
+                        icon="mdi-pencil"
+                        size="x-small"
+                    ></v-btn>         
+                Créer une publication</v-btn> 
+            </a>   
         </div>
         <v-card
         class="mx-auto"
@@ -35,7 +39,7 @@
     
         <v-card-text>
             <div>Prénom :{{ prenom }}</div>
-            <div>Nom {{ nom }}</div>
+            <div>Nom :{{ nom }}</div>
             <div>Adresse email : {{ email }}</div>
     
         </v-card-text>
@@ -54,12 +58,12 @@
 <script>
 export default {
     data: () => ({
-        
+        prenom : localStorage.getItem("prenom"),
+        nom : localStorage.getItem("nom"),
+        email : localStorage.getItem("email"),
     }),
     methods: {
-            prenom : localStorage.getItem("prenom"),
-            nom : localStorage.getItem("nom"),
-            email : localStorage.getItem("email"),
+
 
 
         }
@@ -70,7 +74,7 @@ export default {
 
 <style>
 
-#titre-profil{
+h2{
     text-align: center;
     margin-bottom: 20px;
 }

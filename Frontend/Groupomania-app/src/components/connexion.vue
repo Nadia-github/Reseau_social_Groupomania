@@ -34,14 +34,16 @@
                 ></v-icon>
             </v-btn>
             <p>Pas encore inscrit ?</p>
-            <v-btn
-                :disabled="valid"
-                color="#91"
-                class="mr-5"
-                @click="suscribe"
-                >
-                s'inscrire
-            </v-btn>
+            <a href="/inscription">
+                <v-btn
+                    :disabled="valid"
+                    color="#91"
+                    class="mr-5"
+                    @click="suscribe"
+                    >
+                    s'inscrire
+                </v-btn>
+            </a>
         </v-form>
         
     </v-app>
@@ -81,8 +83,11 @@ export default {
             })
             .then(response => response.json())
             .then( user =>{
-                localStorage.setItem ("email", user.email)
-                localStorage.setItem ("password", user.password)
+                localStorage.setItem ("email", this.email)
+                localStorage.setItem ("prenom", user.prenom)
+                localStorage.setItem ("nom", user.nom)
+                localStorage.setItem ("sexe", user.sexe)
+                localStorage.setItem ("token", user.token)
                 
                 window.location.href= "/profil"
             })

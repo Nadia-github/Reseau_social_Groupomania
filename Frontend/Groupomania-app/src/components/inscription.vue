@@ -117,7 +117,6 @@ export default {
             localStorage.setItem ("nom", this.nom)
             localStorage.setItem ("sexe", this.sexe)
             localStorage.setItem ("email", this.email)
-            localStorage.setItem ("password", this.password)
             
             window.location.href= "/profil"
             })         
