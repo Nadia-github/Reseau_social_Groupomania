@@ -83,10 +83,11 @@ export default {
             .then( user =>{
                 localStorage.setItem ("email", user.email)
                 localStorage.setItem ("password", user.password)
-
-                window.location.href= "confirmation.html"
+                
+                window.location.href= "/profil"
             })
         },
+        isConnected : localStorage.getItem("userId"),
         suscribe() {
         console.log(this.password)
         }

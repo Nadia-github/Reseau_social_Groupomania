@@ -2,80 +2,95 @@
 
 <template>
     <v-app>
-    <h2>Connecte-toi et tu auras accès à ton profil </h2>
-    <v-form ref="form" v-model="valid" lazy-validation>
-
-        <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
-        ></v-text-field>
-
-        <v-text-field
-            v-model="password"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.min]"
-            :type="show1 ? 'text' : 'password'"
-            name="input-10-1"
-            label="Mot de passe"
-            @click:append="show1 = !show1"
-        ></v-text-field>
-        
-            <v-btn
-            :disabled="!valid"
-            color="#ffcbcb"
-            class="mr-4"
-            @click="accesProfil"
-            >
-            Valider
-                <v-icon
-                end
-                icon="mdi-checkbox-marked-circle"
-                ></v-icon>
+        <h2 id="titre-profil">Bienvenue à toi cher collègue {{ prenom }} </h2>
+        <div class="divos d-flex justify-space-around">
+            <v-btn class="btn">
+                <v-btn
+                    color="info"
+                    icon="mdi-television"
+                    size="x-small"
+                ></v-btn>
+            Voir mon fil d'actualité</v-btn>
+            <v-btn class="btn"
+            @click= "articleCreation">
+                <v-btn
+                    color="secondary"
+                    icon="mdi-pencil"
+                    size="x-small"
+                ></v-btn>         
+            Créer une publication</v-btn>    
+        </div>
+        <v-card
+        class="mx-auto"
+        width="300px"
+        >
+        <v-img
+            class="align-end text-white"
+            height="200"
+            src="public/Groupomania-profil.jpg"
+            cover
+        >
+            <v-card-title id="titre-carte">Ta carte Groupomania</v-card-title>
+        </v-img>
+    
+        <v-card-text>
+            <div>Prénom :{{ prenom }}</div>
+            <div>Nom {{ nom }}</div>
+            <div>Adresse email : {{ email }}</div>
+    
+        </v-card-text>
+    
+        <v-card-actions>
+            <v-btn color="red" 
+            @click= "deleteAccount">
+            Supprimer le compte
             </v-btn>
-            <p>Toujours pas inscrit ?</p>
-            <v-btn
-                :disabled="valid"
-                color="#91"
-                class="mr-5"
-                @click="accesProfil"
-                >
-                s'inscrire
-                <v-icon 
-                end
-                icon="fa:fas fa-edit">
-                </v-icon>
-            </v-btn>
-        </v-form>
+    
+        </v-card-actions>
+        </v-card>
     </v-app>
 </template>
 
 <script>
 export default {
     data: () => ({
-        valid: true,
-        nameRules: [
-        (v) => !!v || "Name is required",
-        (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
-        ],
-        email: "",
-        emailRules: [
-        (v) => !!v || "L'E-mail est requis",
-        (v) => /.+@.+\..+/.test(v) || "L'E-mail doit être valide",
-        ],
-        show1: false,
-        password: '',
-        rules: {
-          required: value => !!value || 'Requis',
-        }
+        
     }),
-
     methods: {
-        accesProfil() {
-        console.log(this.email)
-        },
-    },
-    
-    }
+            prenom : localStorage.getItem("prenom"),
+            nom : localStorage.getItem("nom"),
+            email : localStorage.getItem("email"),
+
+
+        }
+         
+}   
 </script>
+
+
+<style>
+
+#titre-profil{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#titre-carte{
+    color:black;
+    background-color: rgba(255, 255, 255, 0.484);
+    margin-bottom: 10px;
+ }
+
+ .divos{
+     margin-bottom: 20px;
+ }
+
+.btn{
+    padding: 15px;
+}
+
+ v-card{
+     margin: 20px auto;
+ }
+
+</style>

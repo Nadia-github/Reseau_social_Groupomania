@@ -34,6 +34,6 @@
 
 <script>
 
-export default article
+export default articlesAffichage
 
 </script>

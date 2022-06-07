@@ -3,6 +3,8 @@
       <router-link to="/">Connexion</router-link>
       <router-link to="/inscription">Inscription</router-link>
       <router-link v-if="isConnected" to="/profil">Profil</router-link>
+      <router-link to="/about">A propos</router-link>
+
     </nav>
     <header>
       <h1>
@@ -16,11 +18,11 @@
     
     <v-app>
     <v-footer>
-      <v-card
+      <v-card 
         elevation="10"
         rounded="0"
         width="100%"
-        class="bg-grey text-center"
+        class="bg-grey text-center ma-xs-2"
       >
         <v-card-text>
           <v-btn
@@ -88,6 +90,7 @@ header {
   place-items: center;
   justify-content:center;
   margin: 30px 0;
+  box-shadow: 0px 1px 14px 3px rgba(158, 158, 158, 0.95);
 }
 
 .logo {
@@ -147,8 +150,8 @@ nav a:first-of-type {
 }
 
 img {
-     width: 150px;
-     height: 65px;
+     width: 170px;
+     height: 71px;
 }
 
 @media (max-width: 800px) {

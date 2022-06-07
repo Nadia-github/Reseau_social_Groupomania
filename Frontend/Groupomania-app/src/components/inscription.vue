@@ -1,4 +1,5 @@
 <template>
+    <router-link v-if="isConnected" to="/profil">Profil</router-link>
     <v-app>
         <h2>Inscris-toi ici !</h2>
         <v-form ref="form" v-model="valid" lazy-validation>
@@ -110,12 +111,22 @@ export default {
                     password : this.password                             
                 }),
             })
+            .then(response => response.json())
+            .then( user =>{
+            localStorage.setItem ("prenom", this.prenom)
+            localStorage.setItem ("nom", this.nom)
+            localStorage.setItem ("sexe", this.sexe)
+            localStorage.setItem ("email", this.email)
+            localStorage.setItem ("password", this.password)
+            
+            window.location.href= "/profil"
+            })         
         },
+        isConnected : localStorage.getItem("userId"),
+    },
         
         selectSexe() {
         console.log(this.sexe)
         }
-    },
-    
     }
 </script>
