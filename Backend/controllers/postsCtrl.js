@@ -25,7 +25,7 @@ exports.findAllPost = (req, res, next) => {
       attributes: ["id", "titre", "contenu", "createdAt", "updatedAt"],
       include: [{
           model: models.users,
-          attributes: ["nom", "prenom"]
+          attributes: ["nom", "prenom",]
       }]
   })
       .then(posts => {
@@ -34,7 +34,7 @@ exports.findAllPost = (req, res, next) => {
           }
           res.status(200).json({posts});
       })
-      //.catch(error => res.status(400).json({error: error}))
+      .catch(error => res.status(400).json({error: error}))
 }
 
 

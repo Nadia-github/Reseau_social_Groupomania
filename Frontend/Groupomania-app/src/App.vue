@@ -1,75 +1,79 @@
 <template>
-    <nav>
-      <router-link to="/">Accueil</router-link>
-      <router-link to="/inscription">Inscription</router-link>
-      <router-link v-if="isConnected" to="/profil">Profil</router-link>
-      <router-link to="/about">A propos</router-link>
+  <nav>
+    <router-link to="/">Accueil</router-link>
+    <router-link to="/inscription">Inscription</router-link>
+    <router-link v-if="isConnected" to="/profil">Profil</router-link>
+    <router-link to="/about">A propos</router-link>
+  </nav>
+  <header>
+    <h1>Ton réseau</h1>
+    <img
+      src="../icon-left-font-monochrome-white V2.png"
+      alt="logo Groupomania"
+      class="logo"
+    />
+  </header>
+  <main>
+    <v-btn v-if="isConnected" id="btn-logout">Déconnexion </v-btn>
+    <router-view />
+  </main>
 
-    </nav>
-    <header>
-      <h1>
-        Ton réseau
-      </h1>
-      <img src="../public/icon-left-font-monochrome-white V2.png" alt="logo Groupomania" class="logo"> 
-    </header>
-    <main>
-       <router-view/>
-    </main>
-    
-    <v-app>
+  <v-app>
     <v-footer>
-      <v-card 
+      <v-card
         elevation="10"
         rounded="0"
         width="100%"
         class="bg-grey text-center ma-xs-2"
       >
         <v-card-text>
-          <v-btn
-            class="mx-4"
-            icon="mdi-home"
-            variant="plain"
-          ></v-btn>
-          <v-btn
-            class="mx-4"
-            icon="mdi-email"
-            variant="plain"
-          ></v-btn>
-          <v-btn
-            class="mx-4"
-            icon="mdi-calendar"
-            variant="plain"
-          ></v-btn>
+          <v-btn class="mx-4" icon="mdi-home" variant="plain"></v-btn>
+          <v-btn class="mx-4" icon="mdi-email" variant="plain"></v-btn>
+          <v-btn class="mx-4" icon="mdi-calendar" variant="plain"></v-btn>
         </v-card-text>
-  
+
         <v-divider></v-divider>
-  
+
         <v-card-text class="text-white">
-          {{ new Date().getFullYear() }} — <strong>© copyright Groupomania</strong>
+          {{ new Date().getFullYear() }} —
+          <strong>© copyright Groupomania</strong>
         </v-card-text>
       </v-card>
     </v-footer>
   </v-app>
-
 </template>
-
 
 <script>
 import connexion from "@/components/connexion.vue";
 import inscription from "@/components/inscription.vue";
-import router from './router';
+import router from "./router";
 
 export default {
   name: "App",
   components: {},
-    data: () => ({
-    isConnected : localStorage.getItem("userId")
+  data: () => ({
+    isConnected: localStorage.getItem("userId"),
   }),
+  methods: {
+    logout: function () {
+      localStorage.clear();
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 
 <style>
 @import "@/assets/base.css";
+
+#btn-logout {
+  cursor: pointer;
+  width: 20%;
+  text-transform: none;
+  font-size: 12px;
+  top: -20px;
+  display: flex;
+}
 
 #app {
   width: 70%;
@@ -84,21 +88,21 @@ header {
   background-size: 200px 500px;
   max-height: 100vh;
   border-radius: 0;
-  color: #FFF;
+  color: #fff;
   padding: 5px 20px;
   display: flex;
   place-items: center;
-  justify-content:center;
+  justify-content: center;
   margin: 30px 0;
   box-shadow: 0px 1px 14px 3px rgba(158, 158, 158, 0.95);
 }
 
 .logo {
   display: block;
-  margin-left:  10px;
+  margin-left: 10px;
 }
 
-h1{
+h1 {
   padding-bottom: 5px;
   font-size: 1.6em;
   font-weight: bold;
@@ -111,7 +115,7 @@ a,
   transition: 0.4s;
 }
 
-nav{
+nav {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -120,10 +124,9 @@ nav{
   font-size: 1.2em;
 }
 
-.v-footer{
+.v-footer {
   padding: 0;
 }
-
 
 @media (hover: hover) {
   a:hover {
@@ -150,13 +153,16 @@ nav a:first-of-type {
 }
 
 img {
-     width: 170px;
-     height: 71px;
+  width: 170px;
+  height: 71px;
 }
 
 @media (max-width: 800px) {
-  #app{
+  #app {
     width: 90%;
+  }
+  #btn-logout {
+    width: 40%;
   }
 }
 

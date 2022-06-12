@@ -4,7 +4,7 @@ const postsRoute = require ('./routes/posts')
 
 const path = require('path');
 
-//const postsSchema = require('./models/posts');
+const cors = require('cors')
 
 const express = require ('express');
 
@@ -14,6 +14,9 @@ const app = express();
 
 
 require ("dotenv").config();
+
+app.use(cors());
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

@@ -20,7 +20,8 @@ exports.createUser = (req, res) => {
       });
       user
         .save()
-        .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
+        .then(() => res.status(201).json({ 
+            message: "Utilisateur créé !" }))
         .catch((error) => res.status(400).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));
@@ -66,3 +67,16 @@ exports.login = (req, res, next) => {
       .catch(error => res.status(500).json({error}));
 };
 
+exports.deleteAccount = (req, res, next) => {
+
+    models.users.findOne({
+        where: {id: res.locals.userId}
+    })
+        .then(user => {
+                return user.destroy()
+                    .then(() => res.status(200).json({message: "Le profil a été bien  supprimé !"}))
+                    .catch(error => res.status(400).json({error: "Impossible de supprimer le profil !"}));
+        })
+}  
+  
+    
