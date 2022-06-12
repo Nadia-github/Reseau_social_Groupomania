@@ -31,7 +31,7 @@
       Contenus présentant des actes d’automutilation ou une violence excessive.
       Faux profils ou usurpation d’identité. Spam.
     </p>
-    <a @click="$router.go(-1)">back</a>
+    <br />
   </v-app>
 </template>
 

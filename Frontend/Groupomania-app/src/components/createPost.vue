@@ -15,24 +15,23 @@
         v-model="contenu"
         required
         color="pink"
-        label="Ecris un commentaire"
+        label="Exprime toi"
         rows="3"
         :rules="contenuRules"
       ></v-textarea>
 
       <v-file-input
         v-model="attachment"
-        accept="image/png, image/jpeg, image/bmp, image/gif"
-        placeholder="Ajoute une image ou un GIF"
-        prepend-icon="mdi-camera"
-        label="Ajoute une image ou un GIF"
+        type = file
+        accept="image/*"
+        label="Ajoute une image ou un gif si tu le souhaites"
       ></v-file-input>
 
       <v-spacer></v-spacer>
       <v-btn
         :disabled="!valid"
         class="white--text"
-        color="grey accent-4"
+        color=" accent-4"
         @click="validerPost"
       >
         Valider le post
@@ -58,6 +57,7 @@ export default {
     nom: localStorage.getItem("nom"),
     email: localStorage.getItem("email"),
     userId: localStorage.getItem("userId"),
+    
   }),
   methods: {
     validerPost() {
@@ -73,11 +73,12 @@ export default {
           contenu: this.contenu,
           attachment: this.attachment,
         }),
+        
       })
         .then((response) => {
           window.location.href="/posts"
         })
-        
+        console.log("attachment");
     },
   },
 };

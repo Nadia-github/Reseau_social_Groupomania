@@ -56,6 +56,7 @@ export default {
   }),
 
   methods: {
+    
     connect() {
       fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
@@ -74,7 +75,8 @@ export default {
           localStorage.setItem("nom", user.nom);
           localStorage.setItem("sexe", user.sexe);
           localStorage.setItem("token", user.token);
-          window.location.href = "/profil"
+          
+          window.location.href = "/posts"
         })
         .catch(function(error) {
         alert(error);

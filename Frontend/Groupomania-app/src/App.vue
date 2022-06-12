@@ -1,7 +1,8 @@
 <template>
   <nav>
-    <router-link to="/">Accueil</router-link>
-    <router-link to="/inscription">Inscription</router-link>
+    <router-link v-if="!isConnected" to="/">Accueil</router-link>
+    <router-link v-if="!isConnected" to="/inscription">Inscription</router-link>
+    <router-link v-if="isConnected" to="/posts">Fil d'actualité</router-link>
     <router-link v-if="isConnected" to="/profil">Profil</router-link>
     <router-link to="/about">A propos</router-link>
   </nav>
@@ -14,33 +15,32 @@
     />
   </header>
   <main>
-    <v-btn v-if="isConnected" id="btn-logout">Déconnexion </v-btn>
     <router-view />
   </main>
-
-  <v-app>
-    <v-footer>
-      <v-card
-        elevation="10"
-        rounded="0"
-        width="100%"
-        class="bg-grey text-center ma-xs-2"
-      >
-        <v-card-text>
-          <v-btn class="mx-4" icon="mdi-home" variant="plain"></v-btn>
-          <v-btn class="mx-4" icon="mdi-email" variant="plain"></v-btn>
+  <footer class="footer">
+    <v-card
+      elevation="10"
+      rounded="0"
+      width="100%"
+      class="bg text-center ma-xs-2"
+    >
+      <v-card-text>
+        <a href="https://www.groupomania.fr/" class="a_icon"><v-btn class="mx-4" icon="mdi-home" variant="plain"></v-btn></a>
+        <a href="mailto:support@groupomania.fr" class="a_icon"><v-btn class="mx-4" icon="mdi-email" variant="plain"></v-btn></a>
+        <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Example%20Event&dates=20131124T010000Z/20131124T020000Z&details=Event%20Details%20Here&location=123%20Main%20St%2C%20Example%2C%20NY" class="a_icon">
           <v-btn class="mx-4" icon="mdi-calendar" variant="plain"></v-btn>
-        </v-card-text>
+        </a>
+        
+      </v-card-text>
 
-        <v-divider></v-divider>
+      <v-divider></v-divider>
 
-        <v-card-text class="text-white">
-          {{ new Date().getFullYear() }} —
-          <strong>© copyright Groupomania</strong>
-        </v-card-text>
-      </v-card>
-    </v-footer>
-  </v-app>
+      <v-card-text class="text-white">
+        {{ new Date().getFullYear() }} —
+        <strong>© copyright Groupomania</strong>
+      </v-card-text>
+    </v-card>
+  </footer>
 </template>
 
 <script>
@@ -52,7 +52,7 @@ export default {
   name: "App",
   components: {},
   data: () => ({
-    isConnected: localStorage.getItem("userId"),
+    isConnected: localStorage.getItem("token"),
   }),
   methods: {
     logout: function () {
@@ -124,8 +124,21 @@ nav {
   font-size: 1.2em;
 }
 
-.v-footer {
-  padding: 0;
+.footer {
+  margin-bottom: 0;
+  background-color: #616161;
+}
+
+.bg{
+  background-color: #616161;
+}
+
+.a_icon:hover{
+  background: none;
+}
+
+.a_icon{
+  color: rgb(244, 224, 224);
 }
 
 @media (hover: hover) {

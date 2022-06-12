@@ -25,7 +25,7 @@ exports.findAllPost = (req, res, next) => {
       attributes: ["id", "titre", "contenu", "createdAt", "updatedAt"],
       include: [{
           model: models.users,
-          attributes: ["nom", "prenom",]
+          attributes: ["nom", "prenom", "isAdmin"]
       }]
   })
       .then(posts => {

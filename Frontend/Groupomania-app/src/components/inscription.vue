@@ -104,7 +104,7 @@ export default {
           localStorage.setItem("nom", this.nom);
           localStorage.setItem("sexe", this.sexe);
           localStorage.setItem("email", this.email);
-          window.location.href = "/profil";
+          window.location.href = "/";
         })
         .catch(function(error) {
         alert(error);
