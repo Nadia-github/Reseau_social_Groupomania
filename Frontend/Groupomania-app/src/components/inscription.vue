@@ -56,9 +56,13 @@ export default {
   data: () => ({
     valid: true,
     Nom: "",
-    nomRules: [(v) => !!v || "Le nom est requis"],
+    nomRules: [(v) => !!v || "Le nom est requis",
+    (v) => (v && v.length <= 20) || "Le nom doit faire moins de 20 caractères",
+    ],
     Prénom: "",
-    prenomRules: [(v) => !!v || "Le prénom est requis"],
+    prenomRules: [(v) => !!v || "Le prénom est requis",
+    (v) => (v && v.length <= 20) || "Le prénom doit faire moins de 20 caractères",
+    ],
     sexeList: [
       {
         nom: "Homme",

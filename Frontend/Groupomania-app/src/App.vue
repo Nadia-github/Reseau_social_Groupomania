@@ -14,7 +14,7 @@
       class="logo"
     />
   </header>
-  <main>
+  <main id="main">
     <router-view />
   </main>
   <footer class="footer">
@@ -80,8 +80,14 @@ export default {
   width: 70%;
   margin: 0 auto;
   padding: 2rem;
+  background: rgb(252, 252, 252);
+  box-shadow: 0px 1px 14px 3px rgba(158, 158, 158, 0.95);
 
   font-weight: normal;
+}
+
+.v-application{
+  background-color: transparent;
 }
 
 header {

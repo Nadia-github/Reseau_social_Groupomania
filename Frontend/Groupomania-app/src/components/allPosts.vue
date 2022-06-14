@@ -15,8 +15,7 @@
         <v-container fluid>
           <v-card 
           v-for="post in posts"
-          :key="post.id"
-         
+          :key="post.id"    
           style="border-radius:20px;
           "
           class="mb-2 card-remix"
@@ -25,14 +24,14 @@
           
         >
           <div class="presentation">
-            <img class="img-id" v-if="!isMan" src="/femme.png" alt="femme">
-            <img class="img-id" v-if="isMan" src="/homme.png" alt="homme">
-            
-            <h4>{{ prenom }} {{ nom }} </h4>
+            <img class="img-id" v-if="post.user.sexe == 'H'" src="/homme.png" alt="homme">
+            <img class="img-id" v-if="post.user.sexe == 'F'" src="/femme.png" alt="femme">
+           
+            <h4>{{ post.user.prenom }}  {{ post.user.nom }} </h4>
           </div>
           <div id="titre_disposition" style="text-align: center">{{ post.titre }}</div>
           
-          <v-img src="" cover>{{post.attachment}}</v-img>
+          <img v-if="post.attachment" v-bind:src="post.attachment"/>
         
         
 
@@ -42,7 +41,7 @@
           </v-card-text>
 
           <template v-slot:actions>
-            <v-btn @click="deletePost">Supprimer</v-btn>
+            <v-btn v-if="post.userId === userId || isAdmin" @click="deletePost(post)">Supprimer</v-btn>
           </template>
         </v-card>
       </v-container>
@@ -60,16 +59,8 @@ export default {
     prenom: localStorage.getItem("prenom"),
     nom: localStorage.getItem("nom"),
     userId: localStorage.getItem("userId"),
-    //user : localStorage.getItem("user"),
     posts: [
-      {
-        titre: "",
-        contenu: "",
 
-        attachment: "",
-        createdAt:"",
-        userId:""
-      },
     ],
   }),
   
@@ -89,29 +80,16 @@ export default {
     });
   },
   methods: {
-   isMan(){
-      const sexe = localStorage.getItem("sexe")
-      if(sexe == "H") {
-      }
-      console.log("sexe")
-    },
     
-    deletePost() {
-      const token = localStorage.getItem("token")
-      const post = this.post
-      fetch("http://localhost:5000/api/posts/", {
+    deletePost(post) {
+      const token = localStorage.getItem("token")   
+      fetch("http://localhost:5000/api/posts/"+post.id, {
         method : "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
       })
-        if (post.userId === res.locals.userId || isAdmin == 1){
-          ((response) => response.json())
-         .then(() => {
-          localStorage.removeItem(this.post)
-        })
-       }
     },
 
     logout: function () {

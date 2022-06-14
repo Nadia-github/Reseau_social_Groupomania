@@ -39,10 +39,6 @@
 export default {
   data: () => ({
     valid: true,
-    nameRules: [
-      (v) => !!v || "Name is required",
-      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
-    ],
     email: "",
     emailRules: [
       (v) => !!v || "L'E-mail est requis",
@@ -75,7 +71,8 @@ export default {
           localStorage.setItem("nom", user.nom);
           localStorage.setItem("sexe", user.sexe);
           localStorage.setItem("token", user.token);
-          localStorage.setItem("userId", user.userId)
+          localStorage.setItem("userId", user.userId);
+          localStorage.setItem("isAdmin", user.isAdmin)
           
           if(user.token){
             window.location.href = "/posts"

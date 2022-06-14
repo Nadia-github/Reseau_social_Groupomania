@@ -22,10 +22,10 @@ exports.createPost = (req, res) => {
 exports.findAllPost = (req, res, next) => {
   models.posts.findAll({
       order: [["createdAt", "DESC"]],
-      attributes: ["id", "titre", "contenu", "createdAt", "updatedAt", "userId"],
+      attributes: ["id", "titre", "contenu", "createdAt", "updatedAt", "userId", "attachment"],
       include: [{
           model: models.users,
-          attributes: ["nom", "prenom", "isAdmin"]
+          attributes: ["nom", "prenom", "sexe"]
       }]
   })
       .then(posts => {
@@ -46,7 +46,7 @@ exports.findPost = (req, res, next) => {
       where: {id: postId},
       include: [{
           model: models.users,
-          attributes: ["nom", "prenom"]
+          attributes: ["nom", "prenom", "sexe"]
       }]
   })
       .then(post => {
