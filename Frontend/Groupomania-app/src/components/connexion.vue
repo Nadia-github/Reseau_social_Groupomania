@@ -75,8 +75,11 @@ export default {
           localStorage.setItem("nom", user.nom);
           localStorage.setItem("sexe", user.sexe);
           localStorage.setItem("token", user.token);
+          localStorage.setItem("userId", user.userId)
           
-          window.location.href = "/posts"
+          if(user.token){
+            window.location.href = "/posts"
+            }
         })
         .catch(function(error) {
         alert(error);

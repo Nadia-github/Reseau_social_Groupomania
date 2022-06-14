@@ -1,51 +1,65 @@
 <template>
   <v-app>
-    <v-container fluid>
+    
       <h2 class="titre_deconnecte">Bonjour {{ prenom }}, alors quoi de neuf ?</h2>
       <div class="divos justify-space-around">
         <a href="/createpost" class="link-a">
           <v-btn @click="articleCreation" class="btn_createpost">
-            <v-btn id="btn_icon" color="grey" icon="mdi-pencil" size="x-small"></v-btn>
+            <v-btn margin="0 auto" id="btn_icon" color="grey" icon="mdi-pencil" size="x-small"></v-btn>
             Créer une publication</v-btn
           >
         </a>
       </div>
       <v-btn @click="logout" id="btn-logout">Déconnexion </v-btn>
-      <v-card
-        v-for="post in posts"
-        :key="post.id"
-        border
-        class="mb-2"
-        density="compact"
-        prepend-avatar ="https://randomuser.me/api/portraits/women/10.jpg"
-        variant="text "
-      >
-        <div id="titre_disposition">{{ post.titre }}</div>
+      <v-main>
+        <v-container fluid>
+          <v-card 
+          v-for="post in posts"
+          :key="post.id"
+         
+          style="border-radius:20px;
+          "
+          class="mb-2 card-remix"
+          density="compact"
+          color-elevation="blue"
+          
+        >
+          <div class="presentation">
+            <img class="img-id" v-if="!isMan" src="/femme.png" alt="femme">
+            <img class="img-id" v-if="isMan" src="/homme.png" alt="homme">
+            
+            <h4>{{ prenom }} {{ nom }} </h4>
+          </div>
+          <div id="titre_disposition" style="text-align: center">{{ post.titre }}</div>
+          
+          <v-img src="" cover>{{post.attachment}}</v-img>
         
-       
-        {{ post.attachment }}
+        
 
-        <v-card-text v-model="contenu">
-          {{ post.contenu }} <br> <br>
-          <div id="dateCreation">Commentaire créé le : {{ post.createdAt }}</div>
-        </v-card-text>
+          <v-card-text v-model="contenu" style="text-align: justify; display: flex; flex-direction: column;">
+            <div>{{ post.contenu }}</div> <br> <br>
+            <div id="dateCreation">Commentaire créé le :  //dateTime(category.created_at)// </div>
+          </v-card-text>
 
-        <template v-slot:actions>
-          <v-btn color="primary" variant="text">Voir plus</v-btn>
-          <v-btn @click="deletePost">Supprimer</v-btn>
-        </template>
-      </v-card>
-    </v-container>
+          <template v-slot:actions>
+            <v-btn @click="deletePost">Supprimer</v-btn>
+          </template>
+        </v-card>
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 
-<script>
 
+<script>
 
 export default {
   data: () => ({
+    isAdmin: localStorage.getItem("isAdmin"),
     isConnected: localStorage.getItem("userId"),
     prenom: localStorage.getItem("prenom"),
+    nom: localStorage.getItem("nom"),
+    userId: localStorage.getItem("userId"),
     //user : localStorage.getItem("user"),
     posts: [
       {
@@ -54,21 +68,12 @@ export default {
 
         attachment: "",
         createdAt:"",
+        userId:""
       },
     ],
   }),
   
-  mounted() {
-    const sexe = localStorage.getItem("sexe")
-    
-    /*isMan(),{
-     sexe: 'H'
-    }
-    isWoman(), {
-     sexe : 'F'
-    }
-    console.log(isMan) */
-    
+  mounted() {    
     const token = localStorage.getItem("token")
     fetch("http://localhost:5000/api/posts/", {
       method: "GET",
@@ -84,8 +89,16 @@ export default {
     });
   },
   methods: {
+   isMan(){
+      const sexe = localStorage.getItem("sexe")
+      if(sexe == "H") {
+      }
+      console.log("sexe")
+    },
+    
     deletePost() {
       const token = localStorage.getItem("token")
+      const post = this.post
       fetch("http://localhost:5000/api/posts/", {
         method : "DELETE",
         headers: {
@@ -93,25 +106,57 @@ export default {
           Authorization: "Bearer " + token,
         },
       })
-        .then((response) => response.json())
-        .then(() => {
+        if (post.userId === res.locals.userId || isAdmin == 1){
+          ((response) => response.json())
+         .then(() => {
           localStorage.removeItem(this.post)
-        });
+        })
+       }
     },
+
     logout: function () {
       localStorage.clear();
       this.$router.push("/");
     },
 
   },
+    /*dateTime(value) {
+      return moment(value).format("DD-MM-YYYY");
+  },*/
+
 };
 </script>
 
 <style>
 
+.card-remix {
+    box-shadow: 0px 1px 10px 3px rgba(203, 198, 198, 0.95);;
+    background-color: rgb(245, 239, 239);
+    padding: 10px;
+}
+
+.card-remix:hover {
+    box-shadow: 0px 1px 10px 3px rgba(189, 177, 177, 0.95);;
+    background-color: rgb(255, 255, 255);
+    transform: scale(1.02);
+}
+.presentation{
+  align-items: baseline;
+  display: flex;
+  padding: 0 16px;
+  margin-top: 20px;
+}
+
+.presentation h4{
+  margin-left: 7px;
+}
+
+.img-id{
+  width: 25px;
+  height: 25px;
+}
 .divos {
-  margin-bottom: 30px;
-  margin-top: 10px;
+  margin : 10px auto;
   text-transform:none;
 }
 
@@ -137,6 +182,8 @@ export default {
 
 #titre_disposition{
   padding: 5px 16px;
+  font-weight: bold;
+  margin: 0 auto;
 }
 
 #dateCreation{
@@ -151,7 +198,8 @@ export default {
 }
 
 .titre_deconnecte{
-  margin: 20px auto;
+  margin: 30px auto;
 }
+
 
 </style>

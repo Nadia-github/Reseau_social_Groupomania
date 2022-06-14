@@ -78,6 +78,10 @@ export default {
         .then((response) => {
           window.location.href="/posts"
         })
+        .then((post) =>{
+          localStorage.setItem("userId", post.userId);
+          localStorage.setItem("sexe", post.sexe)
+        })
         console.log("attachment");
     },
   },

@@ -24,6 +24,7 @@
       width="100%"
       class="bg text-center ma-xs-2"
     >
+    
       <v-card-text>
         <a href="https://www.groupomania.fr/" class="a_icon"><v-btn class="mx-4" icon="mdi-home" variant="plain"></v-btn></a>
         <a href="mailto:support@groupomania.fr" class="a_icon"><v-btn class="mx-4" icon="mdi-email" variant="plain"></v-btn></a>
