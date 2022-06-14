@@ -4,7 +4,7 @@
       <h2 class="titre_deconnecte">Bonjour {{ prenom }}, alors quoi de neuf ?</h2>
       <div class="divos justify-space-around">
         <a href="/createpost" class="link-a">
-          <v-btn @click="articleCreation" class="btn_createpost">
+          <v-btn class="btn_createpost">
             <v-btn margin="0 auto" id="btn_icon" color="grey" icon="mdi-pencil" size="x-small"></v-btn>
             Créer une publication</v-btn
           >
@@ -31,11 +31,11 @@
           </div>
           <div id="titre_disposition" style="text-align: center">{{ post.titre }}</div>
           
-          <img v-if="post.attachment" v-bind:src="post.attachment"/>
+          <img v-if="post.attachment" v-bind:src="post.attachment" id="img-attachment"/>
         
         
 
-          <v-card-text v-model="contenu" style="text-align: justify; display: flex; flex-direction: column;">
+          <v-card-text style="text-align: justify; display: flex; flex-direction: column;">
             <div>{{ post.contenu }}</div> <br> <br>
             <div id="dateCreation">Commentaire créé le :  //dateTime(category.created_at)// </div>
           </v-card-text>
@@ -88,8 +88,9 @@ export default {
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
-        },
+        },    
       })
+      window.location.reload();
     },
 
     logout: function () {
@@ -107,6 +108,10 @@ export default {
 
 <style>
 
+.v-btn{
+  cursor: pointer;
+}
+
 .card-remix {
     box-shadow: 0px 1px 10px 3px rgba(203, 198, 198, 0.95);;
     background-color: rgb(245, 239, 239);
@@ -114,7 +119,7 @@ export default {
 }
 
 .card-remix:hover {
-    box-shadow: 0px 1px 10px 3px rgba(189, 177, 177, 0.95);;
+    box-shadow: 0px 1px 10px 3px rgba(189, 177, 177, 0.95);
     background-color: rgb(255, 255, 255);
     transform: scale(1.02);
 }
@@ -177,6 +182,16 @@ export default {
 
 .titre_deconnecte{
   margin: 30px auto;
+}
+
+#img-attachment{
+  width: 70%;
+  height: auto;
+  margin: 10px auto;
+  justify-content: center;
+  display :flex;
+  box-shadow: 0px 1px 10px 3px rgba(155, 146, 146, 0.95);
+
 }
 
 

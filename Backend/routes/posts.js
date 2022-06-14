@@ -6,7 +6,6 @@ const multer = require('../middlewares/multer-config');
 
 const postsCtrl = require ("../controllers/postsCtrl");
 
-// On crée un router avec la méthode mise à disposition par Express
 const router = express.Router();
 
 router.post('/', auth, multer, postsCtrl.createPost);
@@ -19,7 +18,6 @@ router.put('/:id', auth, multer, postsCtrl.modifyPost);
 
 router.delete('/:id', auth, postsCtrl.deletePost);
 
-//router.post('/:id/like', auth, postsCtrl.likePost);
 
 
 module.exports = router;

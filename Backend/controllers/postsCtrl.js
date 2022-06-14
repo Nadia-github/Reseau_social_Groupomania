@@ -2,7 +2,6 @@ const models = require('../models');
 const fs = require("fs");
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
-/* Enregistre dans la BDD le post que l'utilisateur a crée */
 exports.createPost = (req, res) => {
   const attachment = req.file ? `${req.protocol}://${req.get("host")}/images/${
     req.file.filename
@@ -38,7 +37,6 @@ exports.findAllPost = (req, res, next) => {
 }
 
 
-/* retourne  un objet Post correspondant a l'id passé en paramètre */
 exports.findPost = (req, res, next) => {
   const postId = req.params.id;
   models.posts.findOne({

@@ -6,7 +6,6 @@ const auth = require('../middlewares/auth');
 // On a besoin d'Express
 const express = require('express');
 
-// On crée un router avec la méthode mise à disposition par Express
 const router = express.Router();
 
 router.post('/signup', userCtrl.createUser);

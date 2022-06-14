@@ -16,7 +16,7 @@ exports.createUser = (req, res) => {
         sexe: req.body.sexe, 
         email: req.body.email,
         password: hash,
-        isAdmin: req.body.admin, //besoin de confirmation
+        isAdmin: req.body.admin, 
       });
       user
         .save()
