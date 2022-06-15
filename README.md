@@ -25,7 +25,7 @@ br/>
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JAVASCRIPT](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-![VUEJS3](https://img.shields.io/badge/-Vue.js-4fc08d?style=flat&logo=vuedotjs&logoColor=white)
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
 ![NODEJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![EXPRESS](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 ![SEQUELIZE](https://img.shields.io/badge/Sequelize-40a4ec?style=for-the-badge&logo=sequelize&logoColor=white)
@@ -36,38 +36,28 @@ br/>
 
 ## Installation : 
 
-Clonez le repo
+Clonez le repository :
 
 ```
 git clone https://github.com/Nadia-github/Creation-reseau-social-d-entreprise.git
 
 ```
 
-Dans le dossier "backend" installez les dependences avec la commande
+Placez vous dans le dossier backend :
 
 ```
-npm install
+- Initialisez les packages via la commande `npm install`
+- Lancez le backend en tapant ensuite `nodemon`
+- Vérifiez bien que le backend communique via le port `:5000`
 
 ```
-Dans le dossier "frontend" installez les dependences avec la commande
+Placez vous dans le dossier frontend :
 
 ```
-npm install
+- Dans le terminal exécutez la commande `npm install`
+- Lancez ensuite la commande `npm run dev`
+- L'interface client est disponible à l'URL suivante : http://localhost:3000/
 
 ```
 
 Dans le dossier configuer la base de données.
-
-  
-Dans le dossier backend exécuter la commande nodemon pour demarrer le serveur
-
-```
-nodemon server
-
-```
-Dans le dosssier frontend exécuter la commande npm run dev
-
-```
-npm run dev
-
-```
