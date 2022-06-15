@@ -3,7 +3,7 @@
 br/>
 
 [![Le logo de Groupomania](https://user.oc-static.com/upload/2019/09/04/15676009353158_image2.png)](https://user.oc-static.com/upload/2019/09/04/15676009353158_image2.png)
-<br/>
+br/>
 
 
 ## Exigences du projet
@@ -46,13 +46,13 @@ git clone https://github.com/Nadia-github/Creation-reseau-social-d-entreprise.gi
 Dans le dossier "backend" installez les dependences avec la commande
 
 ```
-yarn install
+npm install
 
 ```
 Dans le dossier "frontend" installez les dependences avec la commande
 
 ```
-yarn install
+npm install
 
 ```
 
@@ -62,12 +62,12 @@ Dans le dossier configuer la base de données.
 Dans le dossier backend exécuter la commande nodemon pour demarrer le serveur
 
 ```
-nodemon
+nodemon server
 
 ```
-Dans le dosssier frontend exécuter la commande yarn dev
+Dans le dosssier frontend exécuter la commande npm run dev
 
 ```
-yarn dev
+npm run dev
 
 ```

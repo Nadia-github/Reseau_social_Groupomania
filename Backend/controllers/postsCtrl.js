@@ -78,13 +78,14 @@ exports.modifyPost = (req, res, next) => {
 
 /* supprime le post dont l'id est en paramètre */
 exports.deletePost = (req, res, next) => {
+  const isAdmin = res.locals.admin;
 //recherche le poste dans la BDD
   models.posts.findOne({
       attributes: ["id", "userId"],
-      where: {id: req.params.id}
+      where: {id: req.params.id},
   })
       .then(post => {
-          if (post.userId === res.locals.userId) {
+          if (post.userId === res.locals.userId || isAdmin) {
               return post.destroy()
                   // supprime le post de la BDD et retourne un message le confirmant
                   .then(() => res.status(200).json({id: post.id, message: "Le post a été bien  supprimé !"}))
