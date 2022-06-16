@@ -1,31 +1,10 @@
 <template>
   <router-link v-if="isConnected" to="/profil">Profil</router-link>
   <v-app>
-    <h2>Inscris-toi ici !</h2>
+    <h2>Félicitations, tu fais désormais parti de la team Groupomania !</h2>
+    <h3>Connecte-toi dès à présent :</h3>
     <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field
-        v-model="nom"
-        :rules="nomRules"
-        label="Nom"
-        required
-      ></v-text-field>
-
-      <v-text-field
-        v-model="prenom"
-        :rules="prenomRules"
-        label="Prénom"
-        required
-      ></v-text-field>
-
-      <v-select
-        :items="sexeList"
-        label="Sexe"
-        required
-        v-model="sexe"
-        item-title="nom"
-        item-value="valeur"
-      ></v-select>
-
+      <img src="/NetworkRed.png" alt="image réseau" class="network"/>
       <v-text-field
         v-model="email"
         :rules="emailRules"
@@ -43,10 +22,16 @@
         @click:append="show1 = !show1"
       ></v-text-field>
 
-      <v-btn :disabled="!valid" color="#ffcbcb" class="mr-4" @click="validate">
-        Je valide mon inscription
+      <v-btn :disabled="!valid" color="#ffcbcb" class="mr-4" @click="connect">
+        Valider
         <v-icon end icon="mdi-checkbox-marked-circle"></v-icon>
       </v-btn>
+      <p class="dmd">Pas encore inscrit ?</p>
+      <a href="/inscription" id="btn-inscription">
+        <v-btn :disabled="valid" color="#91" class="mr-5" @click="suscribe">
+          s'inscrire
+        </v-btn>
+      </a>
     </v-form>
   </v-app>
 </template>
@@ -55,26 +40,7 @@
 export default {
   data: () => ({
     valid: true,
-    Nom: "",
-    nomRules: [(v) => !!v || "Le nom est requis",
-    (v) => (v && v.length <= 20) || "Le nom doit faire moins de 20 caractères",
-    ],
-    Prénom: "",
-    prenomRules: [(v) => !!v || "Le prénom est requis",
-    (v) => (v && v.length <= 20) || "Le prénom doit faire moins de 20 caractères",
-    ],
-    sexeList: [
-      {
-        nom: "Homme",
-        valeur: "H",
-      },
-      {
-        nom: "Femme",
-        valeur: "F",
-      },
-    ],
-    sexe: "",
-    Email: "",
+    email: "",
     emailRules: [
       (v) => !!v || "L'E-mail est requis",
       (v) => /.+@.+\..+/.test(v) || "L'E-mail doit être valide",
@@ -87,39 +53,63 @@ export default {
   }),
 
   methods: {
-    validate() {
-      fetch("http://localhost:5000/api/auth/signup", {
+    
+    connect() {
+      fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-
         },
         body: JSON.stringify({
-          nom: this.nom,
-          prenom: this.prenom,
-          sexe: this.sexe,
           email: this.email,
           password: this.password,
         }),
       })
         .then((response) => response.json())
         .then((user) => {
-          localStorage.setItem("prenom", this.prenom);
-          localStorage.setItem("nom", this.nom);
-          localStorage.setItem("sexe", this.sexe);
           localStorage.setItem("email", this.email);
-          window.location.href = "/connexionNewUser";
+          localStorage.setItem("prenom", user.prenom);
+          localStorage.setItem("nom", user.nom);
+          localStorage.setItem("sexe", user.sexe);
+          localStorage.setItem("token", user.token);
+          localStorage.setItem("userId", user.userId);
+          localStorage.setItem("isAdmin", user.isAdmin)
+          
+          if(user.token){
+            window.location.href = "/posts"
+            }
         })
         .catch(function(error) {
         alert(error);
         console.log(error);
-      });
+        });
     },
     isConnected: localStorage.getItem("userId"),
-  },
-
-  selectSexe() {
-    console.log(this.sexe);
+    suscribe() {
+      console.log(this.password);
+    },
   },
 };
 </script>
+
+<style>
+
+.network{
+    margin: 0 auto;
+    margin-bottom: 30px;
+    align-items: center;
+    display: block;
+}
+
+.dmd {
+  margin: 10px 0;
+}
+#btn-inscription:hover {
+  margin-top: 10px;
+  background: none;
+}
+
+a:hover {
+  background: none;
+}
+</style>

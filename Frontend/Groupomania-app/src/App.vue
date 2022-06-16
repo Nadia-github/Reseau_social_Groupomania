@@ -26,10 +26,10 @@
     >
     
       <v-card-text>
-        <a href="https://www.groupomania.fr/" class="a_icon"><v-btn class="mx-4" icon="mdi-home" variant="plain"></v-btn></a>
-        <a href="mailto:support@groupomania.fr" class="a_icon"><v-btn class="mx-4" icon="mdi-email" variant="plain"></v-btn></a>
+        <a href="https://www.groupomania.fr/" class="a_icon"><v-btn class="mx-4 icon-app" icon="mdi-home" variant="plain"></v-btn></a>
+        <a href="mailto:support@groupomania.fr" class="a_icon"><v-btn class="mx-4 icon-app" icon="mdi-email" variant="plain"></v-btn></a>
         <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Example%20Event&dates=20131124T010000Z/20131124T020000Z&details=Event%20Details%20Here&location=123%20Main%20St%2C%20Example%2C%20NY" class="a_icon">
-          <v-btn class="mx-4" icon="mdi-calendar" variant="plain"></v-btn>
+          <v-btn class="mx-4 icon-app" icon="mdi-calendar" variant="plain"></v-btn>
         </a>
         
       </v-card-text>
@@ -175,6 +175,37 @@ nav a:first-of-type {
 img {
   width: 170px;
   height: 71px;
+}
+
+@media (max-width: 455px) {
+  #app {
+    width: 100%;
+    padding: 0rem;
+  }
+  
+  nav {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+  }
+
+  nav a{
+    border: none;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1{
+    padding-top: 10px;
+  }
+
+  .icon-app{
+    padding: 0;
+  }
+
 }
 
 @media (max-width: 800px) {

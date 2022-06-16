@@ -78,8 +78,8 @@ exports.modifyPost = (req, res, next) => {
 
 /* supprime le post dont l'id est en paramètre */
 exports.deletePost = (req, res, next) => {
-  const isAdmin = res.locals.admin;
-//recherche le poste dans la BDD
+  const isAdmin = res.locals.isAdmin;
+
   models.posts.findOne({
       attributes: ["id", "userId"],
       where: {id: req.params.id},

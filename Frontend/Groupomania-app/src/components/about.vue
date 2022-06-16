@@ -46,7 +46,7 @@ export default {};
 
 .img_groupomania {
   height: auto;
-  width: 500px;
+  width: 90%;
   margin: 20px auto;
   box-shadow: 0px 1px 14px 3px rgba(168, 123, 123, 0.95);
 }

@@ -2,20 +2,35 @@
   <v-app>
     <h2 id="titre-profil">Bienvenue à toi {{ prenom }}</h2>
     <v-btn @click="logout" id="btn-logout">Déconnexion </v-btn>
-    <v-card class="mx-auto" width="300px">
-      <v-img
-        class="align-end text-white"
+    <v-card class="mx-auto card" >
+      <v-img  v-if="sexe == 'H'" 
+        class="align-end text-white" 
         height="200"
-        src="/Groupomania-profil.jpg"
+        src="/you-boy.gif" alt="homme"
+        cover
+      >
+        <v-card-title id="titre-carte">Ta carte Groupomania</v-card-title>
+      </v-img>
+      <v-img  v-if="sexe == 'F'" 
+        class="align-end text-white" 
+        height="200"
+        src="/you-girl.gif" alt="femme"
         cover
       >
         <v-card-title id="titre-carte">Ta carte Groupomania</v-card-title>
       </v-img>
 
+
       <v-card-text>
-        <div>Prénom :  {{ prenom }}</div>
-        <div>Nom :  {{ nom }}</div>
+        <img class="img-id" v-if="sexe == 'H'" src="/homme.png" alt="homme">
+        <img class="img-id" v-if="sexe == 'F'" src="/femme.png" alt="femme">
+        <div class="gras">Prénom :  {{ prenom }}</div>
+        <div class="gras">Nom :  {{ nom }}</div>
         <div>Adresse email :  {{ email }}</div>
+        <div>Id utilisateur : {{ userId }}</div>
+        <br>
+        <div v-if="sexe == 'F'">Signe distinctif : super-héroine du quotidien </div>
+        <div v-if="sexe == 'H'">Signe particulier : super-héro du quotidien </div>
       </v-card-text>
 
       <v-card-actions>
@@ -28,6 +43,7 @@
 <script>
 export default {
   data: () => ({
+    sexe: localStorage.getItem("sexe"),
     prenom: localStorage.getItem("prenom"),
     nom: localStorage.getItem("nom"),
     email: localStorage.getItem("email"),
@@ -69,7 +85,7 @@ h2 {
 
 #titre-carte {
   color: black;
-  background-color: rgba(255, 255, 255, 0.484);
+  background-color: rgba(255, 255, 255, 0.822);
   margin-bottom: 10px;
 }
 
@@ -83,5 +99,15 @@ h2 {
 
 .mx-auto{
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+.gras{
+  font-weight: bold;
+}
+
+@media (max-width: 455px) {
+  .card{
+    width: 100%;
+  }
 }
 </style>

@@ -1,9 +1,9 @@
 # GROUPOMANIA - Creation d'un réseau social d'entreprise -
 
-br/>
+
 
 [![Le logo de Groupomania](https://user.oc-static.com/upload/2019/09/04/15676009353158_image2.png)](https://user.oc-static.com/upload/2019/09/04/15676009353158_image2.png)
-br/>
+
 
 
 ## Exigences du projet

@@ -11,12 +11,12 @@
         </a>
       </div>
       <v-btn @click="logout" id="btn-logout">Déconnexion </v-btn>
-      <v-main>
+      <v-main class="main">
         <v-container fluid>
           <v-card 
           v-for="post in posts"
           :key="post.id"    
-          style="border-radius:20px;
+          style="border-radius:20px; 
           "
           class="mb-2 card-remix"
           density="compact"
@@ -41,7 +41,7 @@
           </v-card-text>
 
           <template v-slot:actions>
-            <v-btn v-if="post.userId === userId || isAdmin" @click="deletePost(post)">Supprimer</v-btn>
+            <v-btn v-if="post.userId === userId || isAdmin" @click="deletePost(post)" id="deletePost">Supprimer</v-btn>
           </template>
         </v-card>
       </v-container>
@@ -151,15 +151,22 @@ export default {
 
 .link-a:hover{
   background: none;
+  color:#616161;
+}
+
+.link-a{
+  color: white;
 }
 
 .btn_createpost{
-  background-color: rgba(240, 233, 233, 0.708);
+  background-color: #616161;
   text-transform:none;
+  box-shadow: 3px 5px 5px rgba(189, 177, 177, 0.95);
+  border-radius: 0;
 }
 
 .btn_createpost:hover{
-  background-color: rgba(216, 203, 203, 0.708);
+  background-color: rgb(245, 239, 239);
   text-transform:none;
 }
 
@@ -194,5 +201,27 @@ export default {
 
 }
 
+#deletePost{
+  text-transform: initial;
+  color: rgba(213, 189, 189, 0.95);
+  font-style:normal;
+}
+
+@media (max-width: 455px) {
+  #app {
+    width: 100%;
+    padding: 0rem;
+  }
+
+  .card-remix{
+    padding-left: 0; padding-right: 0;
+  }
+  
+  #titre_disposition{
+    padding: 10px 16px;
+  }
+
+
+}
 
 </style>
