@@ -60,4 +60,10 @@ Placez vous dans le dossier frontend :
 
 ```
 
-Dans le dossier configuer la base de données.
+
+
+Un compte admin est présent pour la modération (suppression des posts et commentaires d'autres utilisateurs).
+Voici les codes d'accès admin :
+
+Email : admin1102@yahoo.fr
+Mot de passe : 123
