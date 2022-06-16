@@ -47,7 +47,7 @@ Placez vous dans le dossier backend :
 
 ```
 - Initialisez les packages via la commande `npm install`
-- Lancez le backend en tapant ensuite `nodemon`
+- Lancez le backend en tapant ensuite `nodemon server`
 - Vérifiez bien que le backend communique via le port `:5000`
 
 ```
