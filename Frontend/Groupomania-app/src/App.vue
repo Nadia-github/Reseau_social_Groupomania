@@ -178,6 +178,26 @@ img {
 }
 
 @media (max-width: 455px) {
+
+  h1{
+    font-size: 20px;
+  }
+
+  h2{
+    font-size: 18px;
+  }
+
+  .logo{
+    margin-left: 0px; 
+    height: 60px;
+    width: 160px;
+  }
+   
+
+  a {
+    font-size: 16px;
+  }
+  
   #app {
     width: 100%;
     padding: 0rem;
@@ -213,7 +233,7 @@ img {
     width: 90%;
   }
   #btn-logout {
-    width: 40%;
+    width: 30%;
   }
 }
 

@@ -111,4 +111,10 @@ export default {
 a:hover {
   background: none;
 }
+@media (max-width: 455px){
+  main{
+  padding: 10px
+}
+}
+
 </style>

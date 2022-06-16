@@ -5,7 +5,6 @@ import profil from "@/components/profil.vue";
 import createPost from "@/components/createPost.vue";
 import about from "@/components/about.vue";
 import allPosts from "@/components/allPosts.vue";
-import connexionNewUser from "@components/connexionNewUser.vue";
 
 
 const routes = [
@@ -38,12 +37,7 @@ const routes = [
     path: '/posts',
     name: 'posts',
     component: allPosts,
-    },
-    {
-        path: '/connexionNewUser',
-        name: 'connexionNewUser',
-        component: connexionNewUser,
-        }
+    }
 ]
 
 const router = createRouter({

@@ -6,7 +6,7 @@
       alt="Image Groupomania"
       class="img_groupomania"
     />
-    <p>
+    <p class="about-text">
       Ce réseau social créé par Groupomania a pour objectif de créer un
       véritable lien entre les différents employés de l'entreprise. Un espace
       unique d'échanges et de partages !
@@ -22,9 +22,9 @@
       <a href="mailto:support@groupomania.fr">écrire au service support.</a>
     </p>
     <br />
-    <h3>Quelques règles de base sont à respecter :</h3>
+    <h3 class="about-text">Quelques règles de base sont à respecter :</h3>
     <br />
-    <p>
+    <p class="about-text">
       Voici quelques éléments non autorisés sur Groupomania : Nudité ou tout
       autre contenu suggestif à connotation sexuelle. Discours haineux, menaces
       crédibles ou attaques directes à l’encontre d’un individu ou d’un groupe.
@@ -54,4 +54,20 @@ export default {};
 p {
   text-align: justify;
 }
+
+
+@media (max-width: 455px){
+  .titre-about{
+  padding: 0px 10px;
+  font-size: 16px;
+  }
+
+  .about-text {
+    width: 100%;
+    padding: 1rem;
+    font-size: 14px;
+  }
+}
+
+  
 </style>

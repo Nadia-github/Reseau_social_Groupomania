@@ -205,6 +205,8 @@ export default {
   text-transform: initial;
   color: rgba(213, 189, 189, 0.95);
   font-style:normal;
+  position: absolute;
+  right: 0;
 }
 
 @media (max-width: 455px) {
@@ -220,6 +222,11 @@ export default {
   #titre_disposition{
     padding: 10px 16px;
   }
+
+  .titre_deconnecte{
+  padding: 0px 10px;
+  font-size: 18px;
+}
 
 
 }

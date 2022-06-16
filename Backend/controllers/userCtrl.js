@@ -1,6 +1,7 @@
 const models = require('../models');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+require ("dotenv").config();
 //const { or } = require('sequelize/types');
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
@@ -58,7 +59,7 @@ exports.login = (req, res, next) => {
                       isAdmin: user.isAdmin,
                       token: jwt.sign(
                           {userId: user.id},
-                          "RANDOM_TOKEN_SECRET",
+                          process.env.TOKEN_SECRET,
                           {expiresIn: "24h"}
                       )
                   });
