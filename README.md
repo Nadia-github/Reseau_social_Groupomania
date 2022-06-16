@@ -60,10 +60,25 @@ Placez vous dans le dossier frontend :
 
 ```
 
-
-
 Un compte admin est présent pour la modération (suppression des posts et commentaires d'autres utilisateurs).
 Voici les codes d'accès admin :
 
+```
 Email : admin1102@yahoo.fr
 Mot de passe : 123
+```
+
+Vous pouvez utiliser le fichier "groupomania.sql" pour la création de la BDD.
+
+```
+Créer un fichier config.json et y mettre dedans, les données de votre BDD.
+
+"development": {
+    "username": " ",
+    "password": "",
+    "database": "",
+    "host": "",
+    "port": "",
+    "dialect": ""
+  },
+  ```
