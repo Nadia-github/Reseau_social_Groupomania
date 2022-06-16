@@ -85,12 +85,14 @@ exports.deletePost = (req, res, next) => {
       where: {id: req.params.id},
   })
       .then(post => {
+        console.log(isAdmin);
           if (post.userId === res.locals.userId || isAdmin) {
               return post.destroy()
                   // supprime le post de la BDD et retourne un message le confirmant
                   .then(() => res.status(200).json({id: post.id, message: "Le post a été bien  supprimé !"}))
                   // erreur si le post n'a pu être recherché
                   .catch(error => res.status(400).json({error: "Impossible de supprimer le psot !"}));
+                  
           }
       })
       .catch(error => res.status(404).json({error: "Le post n'a pas été  trouvé !"}));

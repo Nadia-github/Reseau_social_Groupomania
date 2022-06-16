@@ -17,7 +17,6 @@ exports.createUser = (req, res) => {
         sexe: req.body.sexe, 
         email: req.body.email,
         password: hash,
-        isAdmin: req.body.admin, 
       });
       user
         .save()
@@ -58,7 +57,10 @@ exports.login = (req, res, next) => {
                       sexe: user.sexe,
                       isAdmin: user.isAdmin,
                       token: jwt.sign(
-                          {userId: user.id},
+                          {
+                            userId: user.id,
+                            isAdmin: user.isAdmin
+                        },
                           process.env.TOKEN_SECRET,
                           {expiresIn: "24h"}
                       )

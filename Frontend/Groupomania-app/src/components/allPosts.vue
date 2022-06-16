@@ -37,11 +37,11 @@
 
           <v-card-text style="text-align: justify; display: flex; flex-direction: column;">
             <div>{{ post.contenu }}</div> <br> <br>
-            <div id="dateCreation">Commentaire créé le :  //dateTime(category.created_at)// </div>
+            <div id="dateCreation">Commentaire créé le :  {{ dateTime(post.createdAd) }} </div>
           </v-card-text>
-
+          
           <template v-slot:actions>
-            <v-btn v-if="post.userId === userId || isAdmin" @click="deletePost(post)" id="deletePost">Supprimer</v-btn>
+            <v-btn v-if="post.userId == userId || isAdmin" @click="deletePost(post)" id="deletePost">Supprimer</v-btn>
           </template>
         </v-card>
       </v-container>
@@ -51,10 +51,10 @@
 
 
 <script>
-
+import moment from 'moment';
 export default {
   data: () => ({
-    isAdmin: localStorage.getItem("isAdmin"),
+    isAdmin: parseInt(localStorage.getItem("isAdmin")),
     isConnected: localStorage.getItem("userId"),
     prenom: localStorage.getItem("prenom"),
     nom: localStorage.getItem("nom"),
@@ -98,11 +98,10 @@ export default {
       this.$router.push("/");
     },
 
-  },
-    /*dateTime(value) {
+    dateTime(value) {
       return moment(value).format("DD-MM-YYYY");
-  },*/
-
+    },
+  },
 };
 </script>
 
