@@ -6,7 +6,7 @@
       <v-img  v-if="sexe == 'H'" 
         class="align-end text-white" 
         height="200"
-        src="/you-boy.gif" alt="homme"
+        src="/you-boy-2.gif" alt="homme"
         cover
       >
         <v-card-title id="titre-carte">Ta carte Groupomania</v-card-title>
@@ -29,8 +29,8 @@
         <div>Adresse email :  {{ email }}</div>
         <div>Id utilisateur : {{ userId }}</div>
         <br>
-        <div v-if="sexe == 'F'">Signe distinctif : super-héroine du quotidien </div>
-        <div v-if="sexe == 'H'">Signe particulier : super-héro du quotidien </div>
+        <div v-if="sexe == 'F'">Caractéristique : super-héroïne du quotidien </div>
+        <div v-if="sexe == 'H'">Caractéristique : super-héro du quotidien </div>
       </v-card-text>
 
       <v-card-actions>
