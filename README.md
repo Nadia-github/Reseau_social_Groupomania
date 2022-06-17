@@ -1,4 +1,4 @@
-# GROUPOMANIA - Creation d'un réseau social d'entreprise -
+# Creation d'un réseau social d'entreprise
 
 
 
@@ -43,35 +43,26 @@ git clone https://github.com/Nadia-github/Creation-reseau-social-d-entreprise.gi
 
 ```
 
-Placez vous dans le dossier backend :
+Placez vous dans le dossier "Backend" :
 
 ```
 - Initialisez les packages via la commande `npm install`
 - Lancez le backend en tapant ensuite `nodemon server`
-- Vérifiez bien que le backend communique via le port `:5000`
+- Le backend communiquera via le port `:5000`
 
 ```
-Placez vous dans le dossier frontend :
+Placez vous dans le dossier "Frontend" :
 
 ```
 - Dans le terminal exécutez la commande `npm install`
 - Lancez ensuite la commande `npm run dev`
-- L'interface client est disponible à l'URL suivante : http://localhost:3000/
+- L'interface client sera disponible à l'URL suivante : http://localhost:3000/
 
 ```
-
-Un compte admin est présent pour la modération (suppression des posts et commentaires d'autres utilisateurs).
-Voici les codes d'accès admin :
-
-```
-Email : admin1102@yahoo.fr
-Mot de passe : 123
-```
-
 Vous pouvez utiliser le fichier "groupomania.sql" pour la création de la BDD.
 
 ```
-Créer un fichier config.json et y mettre dedans, les données de votre BDD.
+Dans le dossier "Backend", créer un fichier config.json (dans un dossier "config") et y mettre dedans, les données de votre base de données :
 
 "development": {
     "username": " ",
@@ -82,3 +73,12 @@ Créer un fichier config.json et y mettre dedans, les données de votre BDD.
     "dialect": ""
   },
   ```
+Un compte admin est présent pour la modération (suppression éventuelle des posts des utilisateurs).
+Voici les codes d'accès admin :
+
+```
+Email : admin1102@yahoo.fr
+Mot de passe : 123
+```
+
+
