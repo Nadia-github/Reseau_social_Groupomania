@@ -65,7 +65,8 @@ export default {
       })
         .then((response) => response.json())
         .then(() => {
-          localStorage.removeItem("user")
+          localStorage.removeItem("user");
+          localStorage.clear();
           window.location.href = "/";
         });
     },

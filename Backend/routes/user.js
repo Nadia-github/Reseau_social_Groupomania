@@ -3,7 +3,6 @@ const auth = require('../middlewares/auth');
 
 // Contient les fonctions qui s'appliquent aux différentes routes pour les utilisateurs
 
-// On a besoin d'Express
 const express = require('express');
 
 const router = express.Router();
